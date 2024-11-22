@@ -1,20 +1,12 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
+﻿using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
-using CarRentalManagement.Components.Domain;
+using CarRentalManagement.Data;
 using CarRentalManagement.Configurations.Entities;
 
 namespace CarRentalManagement.Data
 {
-    public class CarRentalManagementContext : DbContext
+    public class CarRentalManagementContext(DbContextOptions<CarRentalManagementContext> options) : IdentityDbContext<CarRentalManagementUser>(options)
     {
-        public CarRentalManagementContext (DbContextOptions<CarRentalManagementContext> options)
-            : base(options)
-        {
-        }
-
         public DbSet<CarRentalManagement.Components.Domain.Make> Make { get; set; } = default!;
         public DbSet<CarRentalManagement.Components.Domain.Model> Model { get; set; } = default!;
         public DbSet<CarRentalManagement.Components.Domain.Colour> Colour { get; set; } = default!;
@@ -31,8 +23,5 @@ namespace CarRentalManagement.Data
             builder.ApplyConfiguration(new ModelSeed());
 
         }
-
-
-
     }
 }
