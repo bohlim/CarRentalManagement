@@ -2,17 +2,18 @@
 using Microsoft.EntityFrameworkCore;
 using CarRentalManagement.Data;
 using CarRentalManagement.Configurations.Entities;
+using CarRentalManagement.Domain;
 
 namespace CarRentalManagement.Data
 {
     public class CarRentalManagementContext(DbContextOptions<CarRentalManagementContext> options) : IdentityDbContext<CarRentalManagementUser>(options)
     {
-        public DbSet<CarRentalManagement.Components.Domain.Make> Make { get; set; } = default!;
-        public DbSet<CarRentalManagement.Components.Domain.Model> Model { get; set; } = default!;
-        public DbSet<CarRentalManagement.Components.Domain.Colour> Colour { get; set; } = default!;
-        public DbSet<CarRentalManagement.Components.Domain.Vehicle> Vehicle { get; set; } = default!;
-        public DbSet<CarRentalManagement.Components.Domain.Booking> Booking { get; set; } = default!;
-        public DbSet<CarRentalManagement.Components.Domain.Customer> Customer { get; set; } = default!;
+        public DbSet<Make> Make { get; set; } = default!;
+        public DbSet<Model> Model { get; set; } = default!;
+        public DbSet<Colour> Colour { get; set; } = default!;
+        public DbSet<Vehicle> Vehicle { get; set; } = default!;
+        public DbSet<Booking> Booking { get; set; } = default!;
+        public DbSet<Customer> Customer { get; set; } = default!;
 
         protected override void OnModelCreating(ModelBuilder builder)
         {

@@ -1,4 +1,4 @@
-﻿using CarRentalManagement.Components.Domain;
+﻿using CarRentalManagement.Domain;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 

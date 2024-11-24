@@ -1,4 +1,4 @@
-﻿namespace CarRentalManagement.Components.Domain
+﻿namespace CarRentalManagement.Domain
 {
     public class Vehicle : BaseDomainModel
     {

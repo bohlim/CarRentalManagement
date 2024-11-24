@@ -22,7 +22,7 @@ namespace CarRentalManagement.Migrations
 
             SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder);
 
-            modelBuilder.Entity("CarRentalManagement.Components.Domain.Booking", b =>
+            modelBuilder.Entity("CarRentalManagement.Domain.Booking", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -59,7 +59,7 @@ namespace CarRentalManagement.Migrations
                     b.ToTable("Booking");
                 });
 
-            modelBuilder.Entity("CarRentalManagement.Components.Domain.Colour", b =>
+            modelBuilder.Entity("CarRentalManagement.Domain.Colour", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -107,7 +107,7 @@ namespace CarRentalManagement.Migrations
                         });
                 });
 
-            modelBuilder.Entity("CarRentalManagement.Components.Domain.Customer", b =>
+            modelBuilder.Entity("CarRentalManagement.Domain.Customer", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -144,7 +144,7 @@ namespace CarRentalManagement.Migrations
                     b.ToTable("Customer");
                 });
 
-            modelBuilder.Entity("CarRentalManagement.Components.Domain.Make", b =>
+            modelBuilder.Entity("CarRentalManagement.Domain.Make", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -192,7 +192,7 @@ namespace CarRentalManagement.Migrations
                         });
                 });
 
-            modelBuilder.Entity("CarRentalManagement.Components.Domain.Model", b =>
+            modelBuilder.Entity("CarRentalManagement.Domain.Model", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -258,7 +258,7 @@ namespace CarRentalManagement.Migrations
                         });
                 });
 
-            modelBuilder.Entity("CarRentalManagement.Components.Domain.Vehicle", b =>
+            modelBuilder.Entity("CarRentalManagement.Domain.Vehicle", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
