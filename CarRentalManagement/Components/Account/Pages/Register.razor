@@ -16,7 +16,7 @@
 @inject IdentityRedirectManager RedirectManager
 
 @* Practice 94: Below inject is required for RoleExistsAsync(),  CreateAsync() *@
-@* @inject RoleManager<IdentityRole> RoleManager *@
+@inject RoleManager<IdentityRole> RoleManager
 @* Practice 94: End *@
 
 <PageTitle>Register</PageTitle>
@@ -38,7 +38,7 @@
             </div>
 
             @* Practice 94: add the form controls for FirstName and LastName by duplicating from Email form control. *@
-@*             <div class="form-floating mb-3">
+            <div class="form-floating mb-3">
                 <InputText @bind-Value="Input.FirstName" class="form-control" autocomplete="firstname" aria-required="true" placeholder="Bill" />
                 <label for="email">First Name</label>
                 <ValidationMessage For="() => Input.FirstName" class="text-danger" />
@@ -47,7 +47,7 @@
                 <InputText @bind-Value="Input.LastName" class="form-control" autocomplete="lastname" aria-required="true" placeholder="Gates" />
                 <label for="email">Last Name</label>
                 <ValidationMessage For="() => Input.LastName" class="text-danger" />
-            </div> *@
+            </div>
             @* Practice 94: End *@
 
 
@@ -93,8 +93,8 @@
         await emailStore.SetEmailAsync(user, Input.Email, CancellationToken.None);
 
         // Practice 94:  Set the FirstName and LastName proprties:
-        // user.FirstName = Input.FirstName;
-        // user.LastName = Input.LastName;
+        user.FirstName = Input.FirstName;
+        user.LastName = Input.LastName;
         // Practice 94:  End
 
         var result = await UserManager.CreateAsync(user, Input.Password);
@@ -107,14 +107,14 @@
 
 
         // Practice 94: create the user role if it doesn't exist
-        // if (!await RoleManager.RoleExistsAsync("User"))
-        // {
-        //     await RoleManager.CreateAsync(new IdentityRole("User"));
-        // }
-        // //add the user to the user role
-        // await UserManager.AddToRoleAsync(user, "User");
-        // //add the user id as claim when user registers
-        // await UserManager.AddClaimAsync(user, new System.Security.Claims.Claim("userId", user.Id));
+        if (!await RoleManager.RoleExistsAsync("User"))
+        {
+            await RoleManager.CreateAsync(new IdentityRole("User"));
+        }
+        //add the user to the user role
+        await UserManager.AddToRoleAsync(user, "User");
+        //add the user id as claim when user registers
+        await UserManager.AddClaimAsync(user, new System.Security.Claims.Claim("userId", user.Id));
         // Practice 94: End
 
 
@@ -172,13 +172,13 @@
         public string Email { get; set; } = "";
 
         // Practice 94: Add the following Properties: FirstName, Lastname
-        // [Required]
-        // [Display(Name = "First Name")]
-        // public string FirstName { get; set; } = "";
+        [Required]
+        [Display(Name = "First Name")]
+        public string FirstName { get; set; } = "";
 
-        // [Required]
-        // [Display(Name = "Last Name")]
-        // public string LastName { get; set; } = "";
+        [Required]
+        [Display(Name = "Last Name")]
+        public string LastName { get; set; } = "";
 
         // Practice 94: End 
 

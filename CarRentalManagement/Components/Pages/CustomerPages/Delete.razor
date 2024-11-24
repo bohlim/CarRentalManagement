@@ -4,6 +4,10 @@
 @inject IDbContextFactory<CarRentalManagement.Data.CarRentalManagementContext> DbFactory
 @inject NavigationManager NavigationManager
 
+@* Practice 101 Add attribute directive [Authorize] *@
+@attribute [Authorize(Roles = "Administrator")]
+@* Practice 101: end *@
+
 <PageTitle>Delete</PageTitle>
 
 <h1>Delete</h1>

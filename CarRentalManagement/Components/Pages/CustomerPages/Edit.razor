@@ -79,8 +79,33 @@ else
     [SupplyParameterFromForm]
     private Customer? Customer { get; set; }
 
+    // Practice 105 start Update Edit.razor I
+
+    //Create userId string to store the user id, default value is "System".
+    private string userId = "System";
+
+    //Inject the AuthenticationStateProvider to get the user id.
+    @inject AuthenticationStateProvider authenticationStateProvider
+
+    // Practice 105 End Update Edit.razor I
+
     protected override async Task OnInitializedAsync()
     {
+        // Practice 105 start Update Edit.razor II
+
+        var authState = await authenticationStateProvider.GetAuthenticationStateAsync();
+        var user = authState.User;
+
+        // Get the userId claim
+        var userIdClaim = user.FindFirst("userId");
+
+        if (userIdClaim != null)
+        {
+            userId = userIdClaim.Value;
+        }
+
+        // Practice 105 End Update Edit.razor II
+        
         using var context = DbFactory.CreateDbContext();
         Customer ??= await context.Customer.FirstOrDefaultAsync(m => m.Id == Id);
 
@@ -95,6 +120,17 @@ else
     private async Task UpdateCustomer()
     {
         using var context = DbFactory.CreateDbContext();
+
+        // Practice 105 start Update Edit.razor III
+
+        //Set the userId to the UpdatedBy fields.
+        Customer.UpdatedBy = userId;
+
+        //Set the DateUpdated fields to the current date and time.
+        Customer.DateUpdated = DateTime.Now;
+
+        // Practice 105 End Update Edit.razor III
+
         context.Attach(Customer!).State = EntityState.Modified;
 
         try
